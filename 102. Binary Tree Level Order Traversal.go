@@ -52,20 +52,18 @@ func levelOrder(root *TreeNode) [][]int {
         return result
     }
     dfslevel(root, 0, &result)
-    
     return result
 }
 
-func dfslevel(root *TreeNode, level int, result *[][]int) [][]int {
-    if root == nil{
-        return *result
+func dfslevel(root *TreeNode, level int, result *[][] int) {
+    if root == nil {
+        return
     }
-    currentLevel :=  level +1
-    if len(*result)<currentLevel {
+    curlevel := level + 1
+    if len(*result)<curlevel {
         *result = append(*result, []int{})
     }
     (*result)[level] = append((*result)[level], root.Val)
-    dfslevel(root.Left, currentLevel, result)
-    dfslevel(root.Right, currentLevel, result)
-    return *result
+    dfslevel(root.Left, curlevel, result)
+    dfslevel(root.Right, curlevel, result)
 }

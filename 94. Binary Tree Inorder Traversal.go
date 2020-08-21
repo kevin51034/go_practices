@@ -7,6 +7,8 @@
  * }
  */
 
+// solution 1
+// recursive
 
 func inorderTraversal(root *TreeNode) []int {
     result := make([]int, 0)
