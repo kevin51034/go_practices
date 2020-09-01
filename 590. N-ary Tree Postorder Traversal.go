@@ -6,6 +6,8 @@
  * }
  */
 
+// solution 1
+// iterative
 func postorder(root *Node) []int {
     result := make([]int, 0)
     if root == nil {
@@ -28,4 +30,26 @@ func reverse(result []int) []int {
         result[i], result[len(result)-i-1] = result[len(result)-i-1], result[i]
     }
     return result
+}
+
+// solution 2
+// recursive
+func postorder(root *Node) []int {
+    result := make([]int, 0)
+    if root == nil {
+        return result
+    }
+    travel(root, &result)
+    return result
+}
+
+func travel(root *Node, result *[]int) {
+    if root == nil {
+        return
+    }
+    for _,node := range root.Children {
+        travel(node, result)
+    }
+    *result = append(*result, root.Val)
+    return
 }

@@ -9,7 +9,6 @@
 
 // solution 1
 // recursive
-
 func isSymmetric(root *TreeNode) bool {
     if root == nil {
         return true
@@ -33,7 +32,6 @@ func check(p, q *TreeNode) bool {
 
 // solution2
 // iterative
-
 func isSymmetric(root *TreeNode) bool {
     if root == nil {
         return true
@@ -60,4 +58,32 @@ func isSymmetric(root *TreeNode) bool {
         queue = append(queue, node2.Left)
     }
     return true
+}
+
+// solution 3
+func isSymmetric(root *TreeNode) bool {
+    if root == nil {
+        return true
+    }
+    return isSameTree(invertTree(root.Left), root.Right)
+}
+
+func isSameTree(p, q *TreeNode) bool {
+    if p == nil && q == nil {
+        return true
+    }
+    if p == nil || q == nil || p.Val!=q.Val {
+        return false
+    }
+    return isSameTree(p.Left, q.Left) && isSameTree(p.Right, q.Right)
+}
+
+func invertTree(root *TreeNode) *TreeNode {
+    if root == nil {
+        return root
+    }
+    invertTree(root.Left)
+    invertTree(root.Right)
+    root.Left, root.Right = root.Right, root.Left
+    return root
 }
