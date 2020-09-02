@@ -6,7 +6,10 @@
  * }
  */
 
- func levelOrder(root *Node) [][]int {
+
+// solution 1
+// BFS
+func levelOrder(root *Node) [][]int {
     result := make([][]int, 0)
     if root == nil {
         return result
@@ -28,4 +31,29 @@
         result = append(result, list)
     }
     return result
+}
+
+// solution 2
+// DFS
+func levelOrder(root *Node) [][]int {
+    result := make([][]int, 0)
+    if root == nil {
+        return result
+    }
+    dfs(root, &result, 0)
+    return result
+}
+
+func dfs(root *Node, result *[][]int, level int) {
+    if root == nil {
+        return 
+    }
+    if len(*result) <= level {
+        *result = append(*result, []int{})
+    }
+    (*result)[level] = append((*result)[level], root.Val)
+    for _,node := range root.Children {
+        dfs(node, result, level+1)
+    }
+    return
 }
