@@ -22,10 +22,13 @@ func main() {
 }
 
 func heapSort(array []int) []int {
+	// build maxHeap
 	for i:=len(array)/2-1; i>=0; i-- {
 		sink(array, i, len(array))
 	}
 
+	// inverse the maxHeap to sorted array
+	// swap fist and last node then pretend the last node is no longer exist(cuz it's already sorted)
 	for i:=len(array)-1; i>=0; i-- {
 		array[i], array[0] = array[0], array[i]
 		sink(array, 0, i)
