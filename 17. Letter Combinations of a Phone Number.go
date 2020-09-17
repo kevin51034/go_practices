@@ -13,6 +13,8 @@ var	letterMap = []string{
 
 // solution 1
 // DFS
+// Time compleixty: O(4^n) 4 for max letter a number can output (ex. 9 for wxyz)
+// Space complexity: O(4^n+n)
 
 func letterCombinations(digits string) []string {
     result := []string{}
@@ -36,3 +38,23 @@ func findCombinations(digits *string, result *[]string, index int, s string) {
     return
 }
 
+// optimize // without index
+func letterCombinations(digits string) []string {
+    result := []string{}
+    if len(digits) == 0 {
+        return result
+    }
+    findCombinations(digits, "", &result)
+    return result
+}
+
+func findCombinations(digits string, s string, result *[]string) {
+    if len(s) == len(digits) {
+        *result = append(*result, s)
+        return
+    }
+    letters := letterMap[digits[len(s)] - '0']
+    for _,letter := range letters {
+        findCombinations(digits, s+string(letter), result)
+    }
+}
