@@ -1,3 +1,5 @@
+// Time complexity: O(n!)
+// Space complexity: O(n)
 func permute(nums []int) [][]int {
     result := make([][]int, 0)
     set := make([]int, 0)

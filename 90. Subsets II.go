@@ -1,3 +1,6 @@
+// Time complexity: O(2^n * n)
+// Space complexity: O(n)
+
 func subsetsWithDup(nums []int) [][]int {
     result := make([][]int, 0)
     set := make([]int, 0)

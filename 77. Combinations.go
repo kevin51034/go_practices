@@ -1,3 +1,6 @@
+// Time complexity: O(C(n, k))
+// Space complexity: O(k)
+
 func combine(n int, k int) [][]int {
     result := make([][]int, 0)
     set := make([]int, 0)
