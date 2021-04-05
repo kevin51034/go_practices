@@ -7,7 +7,7 @@ func groupAnagrams(strs []string) [][]string {
     if len(strs) == 0 {
         return result
     }
-    m := map[[26]int][]string{ }
+    m := map[[26]int][]string{}
     for _, s := range strs {
         k := [26]int{}
         for i:=0; i<len(s); i++ {

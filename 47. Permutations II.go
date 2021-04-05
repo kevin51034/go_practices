@@ -5,30 +5,30 @@ func permuteUnique(nums []int) [][]int {
     set := make([]int, 0)
     used := make([]bool, len(nums))
     sort.Ints(nums)
-    findPermutations(nums, set, &used, &result)
+    findPermutations(nums, used, set, &result)
     return result
 }
 
-func findPermutations(nums, set []int, used *[]bool, result *[][]int) {
-    if len(set) == len(nums) {
+func findPermutations(nums []int, used []bool, set []int, result *[][]int) {
+    if len(nums) == len(set) {
         tmp := make([]int, len(set))
         copy(tmp, set)
         *result = append(*result, tmp)
         return
     }
     for i:=0; i<len(nums); i++ {
-        if (*used)[i] {
-            continue
-		}
-		// Same number can be only used once at each depth.
-        if i>0 && nums[i] == nums[i-1] && !(*used)[i-1] {
+        if used[i] {
             continue
         }
-        (*used)[i] = true
+		// Same number can only be used once at each depth.
+        if i>0 && nums[i] == nums[i-1] && !used[i-1] {
+            continue
+        }
+        used[i] = true
         set = append(set, nums[i])
-        findPermutations(nums, set, used, result)
+        findPermutations(nums, used, set, result)
         set = set[:len(set)-1]
-        (*used)[i] = false
+        used[i] = false
     }
     return
 }

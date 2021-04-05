@@ -7,14 +7,11 @@
  */
 
 // need to implement dummy node to ensure head delete is fine.
-
 func deleteDuplicates(head *ListNode) *ListNode {
-    dummy := &ListNode{Val:0}
-    dummy.Next = head
+    dummy := &ListNode{Next:head}
     head = dummy
     
     var rmVal int
-    
     for head.Next != nil && head.Next.Next != nil {
         if head.Next.Val == head.Next.Next.Val {
             rmVal = head.Next.Val
@@ -25,7 +22,5 @@ func deleteDuplicates(head *ListNode) *ListNode {
             head = head.Next
         }
     }
-
     return dummy.Next
-    
 }

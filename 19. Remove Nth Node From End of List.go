@@ -25,3 +25,20 @@
     slow.Next = slow.Next.Next
     return head
 }
+
+// better to understand
+func removeNthFromEnd(head *ListNode, n int) *ListNode {
+    dummy := &ListNode{Next:head}
+    cur := head
+    count := 0
+    for cur!=nil {
+        count++
+        cur = cur.Next
+    }
+    cur = dummy
+    for i:=0; i<count-n; i++ {
+        cur = cur.Next
+    }
+    cur.Next = cur.Next.Next
+    return dummy.Next
+}
