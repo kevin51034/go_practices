@@ -4,8 +4,8 @@
 
 
 type MyQueue struct {
-    stack []int
-    back []int
+    stack []int // stack s2 on graph
+    back []int // stack s1 on graph
 }
 
 
