@@ -2,18 +2,21 @@
 // Space complexity: O(1)
 
 func maxProfit(prices []int) int {
-    if len(prices) <= 1 {
-        return 0
-    }
+    preMin := prices[0]
     result := 0
-    min := prices[0]
-    for i:=0; i<len(prices); i++ {
-        if prices[i] - min > result {
-            result = prices[i] - min
-        }
-        if prices[i] < min {
-            min = prices[i]
+    for i:=1; i<len(prices); i++ {
+        if prices[i] < preMin {
+            preMin = prices[i]
+        } else {
+            result = max(result, prices[i]-preMin)
         }
     }
     return result
+}
+
+func max(x, y int) int {
+    if x>y {
+        return x
+    }
+    return y
 }

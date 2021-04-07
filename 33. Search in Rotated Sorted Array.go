@@ -1,36 +1,30 @@
 func search(nums []int, target int) int {
-    if len(nums) == 0 {
-        return -1
-    }
-    left := 0
-    right := len(nums)-1
-    
-    for left<right {
-        mid := (left + right)/2
+    left, right := 0, len(nums)-1
+    for left < right {
+        mid := left + (right - left)/2
         if nums[mid] > nums[right] {
-            left = left + 1
+            left = mid + 1
         } else {
             right = mid
         }
     }
-    
     pivot := left
-    left = 0
-    right = len(nums)-1
-    if nums[pivot] <= target && nums[right] >= target {
-        left = pivot
+    if nums[pivot] <= target && nums[len(nums)-1] >= target {
+        right = len(nums)-1
     } else {
+        left = 0
         right = pivot - 1
     }
-    for left<=right {
-        mid := (left + right)/2
-        if nums[mid] == target {
-            return mid
-        } else if nums[mid] < target {
-            left = mid + 1
-        } else {
+    for left <= right {
+        mid := left + (right - left)/2
+        if nums[mid] >= target {
             right = mid - 1
+        } else {
+            left = mid + 1
         }
+    }
+    if nums[left] == target {
+        return left
     }
     return -1
 }

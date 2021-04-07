@@ -15,14 +15,11 @@ func minWindow(s string, t string) string {
     ansLeft := 0
     ansRight := 0
     min := math.MaxInt64
-    var c byte
     for right < len(s) {
-        c = s[right]
+        c := s[right]
         right++
         if target[c]!=0 {
             window[c]++
-            //fmt.Println(target)
-            //fmt.Println(window)
             if window[c] == target[c] {
                 match++
             }

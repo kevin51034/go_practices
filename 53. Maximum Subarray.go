@@ -32,20 +32,25 @@ func maxSubArray(nums []int) int {
 // Time complexity: O(n)
 // Space complexity: O(1)
 func maxSubArray(nums []int) int {
-    if len(nums) == 1 {
-        return nums[0]
+    if len(nums) == 0 {
+        return 0
     }
-    result := 0
-    maxSum := nums[0]
-    for i:=0; i<len(nums); i++ {
-        result += nums[i]
-        if result > maxSum {
-            maxSum = result
+    result := nums[0]
+    preSum := nums[0]
+    for i:=1; i<len(nums); i++ {
+        if preSum < 0 {
+            preSum = nums[i]
+        } else {
+            preSum += nums[i]
         }
-        if result < 0 {
-            result = 0
-        }
+        result = max(result, preSum)
     }
-    return maxSum
+    return result
+}
 
+func max(x, y int) int {
+    if x>y {
+        return x
+    }
+    return y
 }

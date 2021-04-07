@@ -1,3 +1,6 @@
+// Time complexity: O(n^2)
+// Space complexity: O(n^2)
+
 func wordBreak(s string, wordDict []string) bool {
     f := make([]bool, len(s)+1)
     for i,_ := range f {

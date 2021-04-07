@@ -29,3 +29,14 @@ func reverse(s[]byte, start int, result *[]byte) {
     *result = append(*result, s[start])
     return
 }
+
+
+// solution 2
+// recursive but input only string without index
+func reverseString(s []byte)  {
+    if len(s) <= 1 {
+        return
+    }
+    s[0], s[len(s)-1] = s[len(s)-1], s[0]
+    reverseString(s[1:len(s)-1])
+}

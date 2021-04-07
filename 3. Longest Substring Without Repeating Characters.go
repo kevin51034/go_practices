@@ -4,7 +4,7 @@
 func lengthOfLongestSubstring(s string) int {
     window := make(map[byte]int)
     
-    left, right, ans := 0, 0, 0
+    left, right, result := 0, 0, 0
     for right < len(s) {
         c := s[right]
         right++
@@ -14,9 +14,9 @@ func lengthOfLongestSubstring(s string) int {
             left++
             window[d] --
         }
-        ans = max(ans, right-left)
+        result = max(result, right-left)
     }
-    return ans
+    return result
 }
 
 func max(x, y int) int {
