@@ -20,9 +20,9 @@ func findways(s string, visited map[string]int) int {
     }
 
     curway := findways(s[1:], visited)
-    prefix,_ := strconv.Atoi(s[0:2])
+    num,_ := strconv.Atoi(s[0:2])
 
-    if prefix >= 10 &&  prefix <= 26 {
+    if num >= 10 &&  num <= 26 {
         curway += findways(s[2:], visited)
     }
     visited[s] = curway
@@ -33,14 +33,14 @@ func findways(s string, visited map[string]int) int {
 // DP
 // Time complexity: O(n)
 // Space complexity: O(1)
+// implement the concept of fibonacci sequence
 
 func numDecodings(s string) int {
     if len(s) == 0 || s[0] == '0' {
         return 0
     }
-    if len(s) == 1 {
-        return 1
-    }
+	// one stand for choose one character this time, ex: '2' '2' 62 in 2262 
+	// two stand for choose two character thie time, ex: '22' 62 in 2262
     one, two := 1, 1
     for i:=1; i<len(s); i++ {
         if s[i] == '0' {
