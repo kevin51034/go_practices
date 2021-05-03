@@ -2,30 +2,25 @@
 // Space complexity: O(n)
 
 func combinationSum(candidates []int, target int) [][]int {
-    result := make([][]int, 0)
-    if len(candidates) == 0 {
-        return result
-    }
-    oneset := make([]int, 0)
-    findCombinations(candidates, target, 0, &oneset, &result)
-    return result
+	result := make([][]int, 0)
+	set := make([]int, 0)
+	findCombinations(candidates, 0, target, set, &result)
+	return result
 }
 
-func findCombinations(candidates []int, target, index int, oneset *[]int, result *[][]int) {
-    if target < 0 {
-        return
-    }
-    if target == 0 {
-        tmp := make([]int, len(*oneset))
-        copy(tmp, *oneset)
-        *result = append(*result, tmp)
-        return
-    }
-    for i:=index; i<len(candidates); i++ {
-        num := candidates[i]
-        *oneset = append(*oneset, num)
-        findCombinations(candidates, target-num, i, oneset, result)
-        *oneset = (*oneset)[:len(*oneset)-1]
-    }
-    return
+func findCombinations(nums []int, index, target int, set []int, result *[][]int) {
+	if target == 0 {
+		tmp := make([]int, len(set))
+		copy(tmp, set)
+		*result = append(*result, tmp)
+		return
+	} else if target < 0 {
+		return
+	}
+	for i := index; i < len(nums); i++ {
+		set = append(set, nums[i])
+		findCombinations(nums, i, target-nums[i], set, result)
+		set = set[:len(set)-1]
+	}
+	return
 }
